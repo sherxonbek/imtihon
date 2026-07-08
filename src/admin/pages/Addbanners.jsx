@@ -7,6 +7,7 @@ function Addbanners() {
 
     const [loading, setLoading] = useState(false);
 
+//saqlash bannerni 
 
     const handleSave = async (e) => {
         e.preventDefault();
@@ -31,6 +32,8 @@ function Addbanners() {
         }
     };
 
+//orqani tozalash
+
     const handleClear = () => {
         setImgUrl('');
         setLinkTo('');
@@ -38,9 +41,6 @@ function Addbanners() {
 
     return (
         <div>
-
-
-
             <form onSubmit={handleSave} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-4">
                 <div className='bg-gray-200 rounded-2xl p-4 gap-4 flex flex-col'>
                     <div>

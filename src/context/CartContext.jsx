@@ -6,15 +6,20 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
 
+    //itmlar state xolati
+
     const [cartItems, setCartItems] = useState(() => {
         const savedCart = localStorage.getItem('uzum_cart');
         return savedCart ? JSON.parse(savedCart) : [];
     });
 
+    //vaqtincha keshlash uchun
+
     useEffect(() => {
         localStorage.setItem('uzum_cart', JSON.stringify(cartItems));
     }, [cartItems]);
 
+    //maxsulot qoshadi savatga
     const addCart = (product) => {
         setCartItems((prevItems) => {
             const isExit = prevItems.find(item => item.id === product.id);
@@ -27,10 +32,13 @@ export const CartProvider = ({ children }) => {
         });
     };
 
+    //savatdagi maxsulot ochadi transh
+
     const removeFroma = (id) => {
         setCartItems((prevItems) => prevItems.filter(item => item.id !== id));
     };
 
+    //bu qoshib kamaytirish uchun qilindi bu joy samme ac dan copy ozim logika ishlamadi
     const update = (id, amount) => {
         setCartItems((prevItems) => {
             return prevItems
@@ -48,6 +56,9 @@ export const CartProvider = ({ children }) => {
     const clearCart = () => setCartItems([]);
 
     return (
+
+        // bu joyi ham chopildi afsuski samm ac dan
+        
         <CartContext.Provider value={{ cartItems, addCart, removeFroma, update, clearCart }}>
             {children}
         </CartContext.Provider>

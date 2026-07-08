@@ -15,6 +15,7 @@ function Addprodact() {
     //loading state
     const [loading, setLoading] = useState(false);
 
+    //maxsulot qoshadi
 
     const handleSave = async (e) => {
         e.preventDefault();
@@ -22,26 +23,38 @@ function Addprodact() {
 
         setLoading(true);
 
+        //bazadagi korinish copy olingan
+
         const newProduct = {
             title,
             price: Number(price),
             image: imgUrl,
             category,
             description: desc,
-            createdAt: new Date().toISOString()
         };
 
         try {
+
+            //api dan malumot keladi
+
             await productAPI.create(newProduct);
+
+            //alert qilmoqchi emasdim oson deb bosib yubordim
 
             alert("Mahsulot muvaffaqiyatli qo'shildi! 🎉");
             handleClear();
         } catch (error) {
+            
+            //xato logda koramiz
+
             console.log("Xatolik bo'ldi!", error);
         } finally {
+            //xatolik chiqsa ham chiqmasa ham loading ochadi false
             setLoading(false);
         }
     };
+
+//yana orqani tozalash
 
     const handleClear = () => {
         setImgUrl('');

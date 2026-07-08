@@ -62,6 +62,7 @@ function Addbanners() {
                         </div>
                     </div>
                     
+                    {/* button  qismi*/}
 
                     <div className='flex gap-2 font-bold text-2xl'>
                         <button

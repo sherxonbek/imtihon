@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+//barcha bazaga aloqadroqlar sho`tta qisqacha tarif togrisi zb ekan funk nom qoyish uzb en aralash
+
 const API_URL = "https://69ea232415c7e2d512695ff1.mockapi.io";
 
 const api = axios.create({

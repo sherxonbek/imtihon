@@ -44,3 +44,27 @@ export const bannerAPI = {
     return response.data;
   }
 }
+
+
+
+const URL = "https://6a5243fb78ecba6073e29303.mockapi.io/user";
+
+const userApi = axios.create({
+  baseURL: URL,
+  headers: {
+    'Content-Type': 'application/json',
+  }
+});
+
+
+export const users = {
+  getAll: async () => {
+    const response = await userApi.get('/user');
+    return response.data;
+  },
+
+  create: async (userData) => {
+    const response = await userApi.post('/user', userData);
+    return response.data;
+  },
+};

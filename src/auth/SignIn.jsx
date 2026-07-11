@@ -44,7 +44,7 @@ function SignIn() {
 
             localStorage.setItem("userId", userFound.id);
             localStorage.setItem("userRole", userFound.role || "user");
-            navigate("/"); 
+            navigate("/");
 
             handleClear();
         } catch (error) {

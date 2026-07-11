@@ -59,7 +59,7 @@ export const CartProvider = ({ children }) => {
 
         // bu joyi ham chopildi afsuski samm ac dan
         
-        <CartContext.Provider value={{ cartItems, addCart, removeFroma, update, clearCart }}>
+        <CartContext.Provider value={{ cartItems, setCartItems, addCart, removeFroma, update, clearCart }}>
             {children}
         </CartContext.Provider>
     );

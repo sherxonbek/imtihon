@@ -29,7 +29,7 @@ export const productAPI = {
 };
 
 export const bannerAPI = {
-    getAll: async () => {
+  getAll: async () => {
     const response = await api.get('/banners');
     return response.data;
   },
@@ -68,3 +68,20 @@ export const users = {
     return response.data;
   },
 };
+
+export const carts = {
+  getAll: async () => {
+    const response = await userApi.get('/carts');
+    return response.data;
+  },
+
+  create: async (bannerData) => {
+    const response = await userApi.post('/carts', bannerData);
+    return response.data;
+  },
+
+  delete: async (id) => {
+    const response = await userApi.delete(`/carts/${id}`);
+    return response.data;
+  }
+}

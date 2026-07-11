@@ -41,7 +41,7 @@ function SignIn() {
                 return;
             }
 
-
+            localStorage.setItem("username", userFound.user);
             localStorage.setItem("userId", userFound.id);
             localStorage.setItem("userRole", userFound.role || "user");
             navigate("/");

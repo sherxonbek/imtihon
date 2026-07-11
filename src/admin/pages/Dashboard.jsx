@@ -1,5 +1,4 @@
 import React from "react";
-// import 'boxicons/css/boxicons.min.css';
 const months = [
   "yanvar",
   "fevral",

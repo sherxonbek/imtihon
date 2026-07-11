@@ -7,6 +7,8 @@ import Dashboard from "./admin/pages/Dashboard"
 import Statistike from "./admin/pages/Statistike"
 import Addbanners from "./admin/pages/Addbanners"
 import Cart from "./users/pages/Cart"
+import SignUp from "./auth/SignUp"
+import SignIn from "./auth/SignIn"
 
 
 function App() {
@@ -19,6 +21,10 @@ function App() {
             <Route index element={<Home />} />
             <Route path="/cart" element={<Cart />} />
           </Route>
+
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+
 
           <Route path="/admin" element={<LayoutAdmin />} >
             <Route index element={<Dashboard />} />

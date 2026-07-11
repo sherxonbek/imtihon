@@ -47,7 +47,7 @@ export const bannerAPI = {
 
 
 
-const URL = "https://6a5243fb78ecba6073e29303.mockapi.io/user";
+const URL = "https://6a5243fb78ecba6073e29303.mockapi.io/";
 
 const userApi = axios.create({
   baseURL: URL,

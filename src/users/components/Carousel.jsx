@@ -17,7 +17,7 @@ function Carousel() {
             .then(data => {
                 setBanners(data);
                 setLoading(false);
-                
+
                 localStorage.setItem('uzum_banners', JSON.stringify(data));
             })
             .catch(err => {

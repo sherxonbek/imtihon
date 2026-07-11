@@ -41,10 +41,10 @@ function Addprodact() {
 
             //alert qilmoqchi emasdim oson deb bosib yubordim
 
-            alert("Mahsulot muvaffaqiyatli qo'shildi! 🎉");
+            alert("Mahsulot muvaffaqiyatli qo'shildi");
             handleClear();
         } catch (error) {
-            
+
             //xato logda koramiz
 
             console.log("Xatolik bo'ldi!", error);
@@ -54,7 +54,7 @@ function Addprodact() {
         }
     };
 
-//yana orqani tozalash
+    //yana orqani tozalash
 
     const handleClear = () => {
         setImgUrl('');

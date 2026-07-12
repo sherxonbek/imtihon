@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { users } from '../services/api';
@@ -118,6 +118,12 @@ function SignIn() {
                     >
                         {loading ? "Loading..." : "Kirish"}
                     </button>
+                    <h1 className='text-xl mt-2'>
+                        
+                        <Link to="/signup" className="text-blue-500 hover:underline ml-1">
+                            Ro'yhatdan o'tish
+                        </Link>
+                    </h1>
                     {error && (
                         <div className="bg-red-100 text-red-700 px-3 py-2 rounded-md mb-4 text-sm font-medium border border-red-200">
                             {error}

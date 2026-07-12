@@ -1,9 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GrEdit } from 'react-icons/gr'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { NavLink } from 'react-router-dom'
+import { productAPI } from '../../services/api';
 
 function ProdactsManage() {
+
+    const [allPraducts, setAllPraducts] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+
+    async function orders() {
+        setLoading(true);
+
+        try {
+            const allPraduct = await productAPI.getAll();
+
+
+            setAllPraducts(allPraduct)
+
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        orders();
+    }, []);
+
+
     return (
         <div className='w-full bg-gray-50 '>
             <div className="bg-white rounded-2xl shadow-card border border-gray-100 p-6">
@@ -59,7 +86,7 @@ function ProdactsManage() {
                                             type="button"
                                             className="p-1.5 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
                                         >
-                                            <RiDeleteBin6Fill size={20}/>
+                                            <RiDeleteBin6Fill size={20} />
                                         </button>
 
                                     </div>

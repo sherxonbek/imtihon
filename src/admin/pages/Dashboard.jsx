@@ -1,4 +1,7 @@
 import React from "react";
+import { FaUsers } from "react-icons/fa";
+import { GoPackage } from "react-icons/go";
+import { IoLogoUsd } from "react-icons/io";
 
 
 function bugunVaqt() {
@@ -27,8 +30,9 @@ function Dashboard() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
 
-        <div className="bg-white p-6 rounded-2xl shadow-uzum border border-gray-100 flex items-center justify-between">
-          <div>
+        <div className="flex bg-white p-6 rounded-2xl shadow-uzum border border-gray-100 items-center">
+          <IoLogoUsd className="text-6xl text-green-500"/>
+          <div className="ml-6">
             <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Jami Savdo</p>
             <h3 className="text-2xl font-black text-gray-900 mt-1">
               145,000,000 so'm
@@ -38,8 +42,9 @@ function Dashboard() {
 
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-uzum border border-gray-100 flex items-center justify-between">
-          <div>
+        <div className="bg-white p-6 rounded-2xl shadow-uzum border border-gray-100 flex items-center ">
+          <GoPackage className="text-6xl text-blue-600"/>
+          <div className="ml-6">
             <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Buyurtmalar</p>
             <h3 className="text-2xl font-black text-gray-900 mt-1">
               42 ta
@@ -48,8 +53,9 @@ function Dashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-uzum border border-gray-100 flex items-center justify-between">
-          <div>
+        <div className="bg-white p-6 rounded-2xl shadow-uzum border border-gray-100 flex items-center">
+          <FaUsers className="text-6xl text-purple-600"/>
+          <div className="ml-6">
             <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Mijozlar</p>
             <h3 className="text-2xl font-black text-gray-900 mt-1">
               18 ta

@@ -5,6 +5,8 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { users } from '../services/api';
 import Home from '../users/pages/Home';
 
+
+
 function SignIn() {
 
     const [userName, setUserName] = useState("");
@@ -14,6 +16,9 @@ function SignIn() {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+
+    const loginAdmin = 'Sherxon';
+    const passAdmin = 'Sherxon03';
 
 
 
@@ -33,7 +38,9 @@ function SignIn() {
             const allUsers = await users.getAll();
 
             const userFound = allUsers.find(item => item.user === userName && item.pass === pass);
-
+            if (userName == loginAdmin || pass == passAdmin) {
+                navigate("/admin")
+            }
 
             if (!userFound) {
                 setError("Bu username yoki passwoard xato")

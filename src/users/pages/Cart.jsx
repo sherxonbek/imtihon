@@ -28,8 +28,9 @@ function Cart() {
       for (const item of cartItems) {
         const cartData = {
           userId: userId,
-          productId: item.id,
-          quantity: item.quantity
+          prodact: item.title,
+          quantity: item.quantity,
+          price: item.price
         };
 
         await carts.create(cartData);

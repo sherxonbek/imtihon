@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaUsers } from "react-icons/fa";
 import { GoPackage } from "react-icons/go";
 import { IoLogoUsd } from "react-icons/io";
+
+import { carts, users } from '../../services/api';
+
 
 
 function bugunVaqt() {
@@ -14,7 +17,44 @@ function bugunVaqt() {
 }
 
 
+
 function Dashboard() {
+  const [allUser, setAllUser] = useState([]);
+  const [allCart, setAllCarts] = useState([]);
+
+  console.log(allCart);
+  
+
+  const [loading, setLoading] = useState(false);
+
+
+  async function orders() {
+    setLoading(true);
+
+    try {
+      const allUsers = await users.getAll();
+      const allCarts = await carts.getAll();
+
+
+      setAllUser(allUsers);
+      setAllCarts(allCarts)
+
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    orders();
+  }, []);
+
+
+
+  const totalPrice = allCart.reduce((sum, item) => sum + (Number(item.price) * item.quantity), 0);
+
+
   return (
     <div className="p-6 bg-gray-50 h-full font-Nunito text-gray-800">
 
@@ -31,11 +71,11 @@ function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
 
         <div className="flex bg-white p-6 rounded-2xl shadow-uzum border border-gray-100 items-center">
-          <IoLogoUsd className="text-6xl text-green-500"/>
+          <IoLogoUsd className="text-6xl text-green-500" />
           <div className="ml-6">
             <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Jami Savdo</p>
             <h3 className="text-2xl font-black text-gray-900 mt-1">
-              145,000,000 so'm
+              {loading ? ("Xisoblanmoqda...") : `${totalPrice.toLocaleString()} so'm`}
             </h3>
             <span className="text-xs text-green-600 font-bold bg-green-50 px-2 py-0.5 rounded-md mt-2 inline-block">+12% bu oy</span>
           </div>
@@ -43,22 +83,22 @@ function Dashboard() {
         </div>
 
         <div className="bg-white p-6 rounded-2xl shadow-uzum border border-gray-100 flex items-center ">
-          <GoPackage className="text-6xl text-blue-600"/>
+          <GoPackage className="text-6xl text-blue-600" />
           <div className="ml-6">
             <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Buyurtmalar</p>
             <h3 className="text-2xl font-black text-gray-900 mt-1">
-              42 ta
+              {loading ? "Xisoblanmoqda..." : allCart.length}
             </h3>
             <span className="text-xs text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded-md mt-2 inline-block">Faol buyurtmalar</span>
           </div>
         </div>
 
         <div className="bg-white p-6 rounded-2xl shadow-uzum border border-gray-100 flex items-center">
-          <FaUsers className="text-6xl text-purple-600"/>
+          <FaUsers className="text-6xl text-purple-600" />
           <div className="ml-6">
             <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Mijozlar</p>
             <h3 className="text-2xl font-black text-gray-900 mt-1">
-              18 ta
+              {loading ? "Xisoblanmoqda..." : allUser.length}
             </h3>
             <span className="text-xs text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-md mt-2 inline-block">Ro'yxatdan o'tganlar</span>
           </div>
@@ -82,19 +122,16 @@ function Dashboard() {
             </thead>
             <tbody className="text-sm font-medium text-gray-700">
 
-              <tr className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-                <td className="py-3.5 pl-2 font-bold text-gray-900">#user_1</td>
-                <td className="py-3.5">#prod_2</td>
-                <td className="py-3.5">1 ta</td>
-                
-              </tr>
+              {allCart.map((item) => {
+                return (
+                  <tr className="border-b border-gray-300 hover:bg-gray-200 transition-colors">
+                    <td className="py-3.5 pl-2 font-bold text-gray-900">{allUser.find(u => u.id === item.userId)?.user || "Mijoz topilmadi"}</td>
+                    <td className="py-3.5">{item.prodact ? item.prodact : "Maxsulot yuklanmoqda ..." }</td>
+                    <td className="py-3.5">{item.quantity ? item.quantity : "Yuklanmoqda..."}</td>
 
-              <tr className="border-b border-gray-300 hover:bg-gray-200 transition-colors">
-                <td className="py-3.5 pl-2 font-bold text-gray-900">#user_3</td>
-                <td className="py-3.5">#prod_1</td>
-                <td className="py-3.5">2 ta</td>
-                
-              </tr>
+                  </tr>
+                );
+              })}
 
             </tbody>
           </table>

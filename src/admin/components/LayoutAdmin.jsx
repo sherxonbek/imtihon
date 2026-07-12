@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import Saidbar from './Saidbar'
 import { Outlet } from 'react-router-dom'
 
-function Layout() {
+export default function Layout() {
   return (
     <div className='bg-gray-900 text-white'>
       <Navbar />
@@ -16,5 +16,3 @@ function Layout() {
     </div>
   )
 }
-
-export default Layout

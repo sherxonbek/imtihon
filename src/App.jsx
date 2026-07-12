@@ -9,6 +9,9 @@ import Addbanners from "./admin/pages/Addbanners"
 import Cart from "./users/pages/Cart"
 import SignUp from "./auth/SignUp"
 import SignIn from "./auth/SignIn"
+import ProdactsManage from "./admin/pages/ProdactsManage"
+import LayoutManage from "./admin/components/LayoutManage"
+import Manage from "./admin/pages/Manage"
 
 
 function App() {
@@ -26,11 +29,17 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
 
 
+
           <Route path="/admin" element={<LayoutAdmin />} >
             <Route index element={<Dashboard />} />
             <Route path="addprodact" element={<Addprodact />} />
             <Route path="statistika" element={<Statistike />} />
             <Route path="addbanners" element={<Addbanners />} />
+
+            <Route path="product-management" element={<LayoutManage />} >
+              <Route index element={<ProdactsManage />} />
+              <Route path="banner-manage" element={<Manage />} />
+            </Route>
           </Route>
         </Routes>
       </Router>

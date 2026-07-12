@@ -1,6 +1,7 @@
 import { LayoutDashboard, BarChart3, PlusCircle, ImagePlus } from 'lucide-react'
 
 import React from 'react'
+import { FaLayerGroup } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom'
 
 function Saidbar() {
@@ -40,6 +41,13 @@ function Saidbar() {
             >
                 <ImagePlus size={18} />
                 <h1 className='font-bold'>Bannerlar</h1>
+            </NavLink>
+            <NavLink to="/admin/product-management"
+                className={({ isActive }) => `${baseStyle} ${isActive ? 'bg-[#c4baf3] text-[#7C3AED]' : 'text-gray-500 hover:text-[#7C3AED] hover:bg-gray-200'
+                    }`}
+            >
+                <FaLayerGroup size={18} />
+                <h1 className='font-bold'>Mahsulotlar ro'yxati</h1>
             </NavLink>
         </div>
     )

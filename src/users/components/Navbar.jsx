@@ -1,9 +1,17 @@
-import { LucideShoppingBag, Search, User, ShoppingCart, ShieldCheck, User2 } from 'lucide-react'
-import React, { useContext, useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { CartContext } from '../../context/CartContext';
-import { users } from '../../services/api';
-import { BiLogIn } from 'react-icons/bi';
+import {
+  LucideShoppingBag,
+  Search,
+  User,
+  ShoppingCart,
+  ShieldCheck,
+  User2,
+} from "lucide-react";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
+import { users } from "../../services/api";
+import { BiLogIn } from "react-icons/bi";
+import { PackageCheck } from "lucide-react";
 
 function Navbar() {
   const [user, setUser] = useState("");
@@ -17,8 +25,7 @@ function Navbar() {
     if (localUser) {
       setUser(localUser);
     }
-  }, [])
-
+  }, []);
 
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -30,27 +37,40 @@ function Navbar() {
     navigate("/signin");
   }
 
-
   return (
-    <div className='flex justify-between items-center px-8 py-3 bg-white shadow-sm border-b border-gray-100  mx-auto w-full gap-6'>
-
-      <NavLink to="/" className='flex gap-2 items-center cursor-pointer select-none'>
-        <LucideShoppingBag size={34} className='rounded-full p-1.5 text-white bg-[#7C3AED]' />
-        <h1 className='font-extrabold text-2xl text-[#7C3AED] font-Nunito tracking-tight'>UzumShop</h1>
+    <div className="flex justify-between items-center px-8 py-3 bg-white shadow-sm border-b border-gray-100  mx-auto w-full gap-6">
+      <NavLink
+        to="/"
+        className="flex gap-2 items-center cursor-pointer select-none"
+      >
+        <LucideShoppingBag
+          size={34}
+          className="rounded-full p-1.5 text-white bg-[#7C3AED]"
+        />
+        <h1 className="font-extrabold text-2xl text-[#7C3AED] font-Nunito tracking-tight">
+          UzumShop
+        </h1>
       </NavLink>
 
-      <div className='flex flex-grow max-w-xl border-gray-300 border p-2 rounded-xl gap-2 items-center bg-gray-50 focus-within:border-[#7C3AED] focus-within:bg-white transition-all duration-200'>
+      <div className="flex flex-grow max-w-xl border-gray-300 border p-2 rounded-xl gap-2 items-center bg-gray-50 focus-within:border-[#7C3AED] focus-within:bg-white transition-all duration-200">
         <Search className="text-gray-400" size={20} />
         <input
           type="text"
           placeholder="Mahsulot qidirish..."
-          className='focus:outline-none bg-transparent w-full text-sm text-gray-700'
+          className="focus:outline-none bg-transparent w-full text-sm text-gray-700"
         />
       </div>
 
-      <div className='flex items-center gap-6'>
-
-        <NavLink to="/cart" className={({ isActive }) => `flex flex-col items-center gap-0.5 text-xs font-medium ${isActive ? 'text-[#7C3AED]' : 'text-gray-500 hover:text-[#7C3AED]'}`}>
+      <div className="flex items-center gap-6">
+        <NavLink to="/packagecheck">
+          <PackageCheck />
+        </NavLink>
+        <NavLink
+          to="/cart"
+          className={({ isActive }) =>
+            `flex flex-col items-center gap-0.5 text-xs font-medium ${isActive ? "text-[#7C3AED]" : "text-gray-500 hover:text-[#7C3AED]"}`
+          }
+        >
           <div className="relative">
             <ShoppingCart size={22} />
             {totalItems > 0 && (
@@ -70,9 +90,10 @@ function Navbar() {
               >
                 {isOpen ? (
                   <div className="absolute right-0 top-12 w-48 bg-white border border-gray-100 rounded-xl shadow-xl py-2 z-50 flex flex-col gap-0.5">
-
                     <div className="px-4 py-2 border-b border-gray-50 mb-1">
-                      <p className="text-xs text-gray-400 font-medium">Tizimga kirildi:</p>
+                      <p className="text-xs text-gray-400 font-medium">
+                        Tizimga kirildi:
+                      </p>
                       <p className="text-sm font-bold text-gray-800 truncate">
                         {user}
                       </p>
@@ -83,36 +104,32 @@ function Navbar() {
                       Mening profilim
                     </button>
 
-                    <button 
-                    onClick={handleLogout}
-                    className="w-full text-left px-4 py-2 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors border-t border-gray-50 mt-1 flex items-center gap-2 cursor-pointer">
-                      <BiLogIn size={16} className="rotate-180" /> 
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors border-t border-gray-50 mt-1 flex items-center gap-2 cursor-pointer"
+                    >
+                      <BiLogIn size={16} className="rotate-180" />
                       Tizimdan chiqish
                     </button>
-
                   </div>
                 ) : (
-                  <div>
-                    {user[0].toUpperCase()}
-
-                  </div>
+                  <div>{user[0].toUpperCase()}</div>
                 )}
-
               </div>
             </div>
           ) : (
-            <Link to="/signin" className="flex flex-col items-center gap-1.5 text-gray-600 hover:text-[#7C3AED]">
+            <Link
+              to="/signin"
+              className="flex flex-col items-center gap-1.5 text-gray-600 hover:text-[#7C3AED]"
+            >
               <User2 size={20} />
               <span className="text-sm font-medium">Kirish</span>
             </Link>
           )}
         </div>
-
-
       </div>
-
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

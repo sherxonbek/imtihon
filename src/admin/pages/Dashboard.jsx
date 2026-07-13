@@ -22,8 +22,7 @@ function Dashboard() {
   const [allUser, setAllUser] = useState([]);
   const [allCart, setAllCarts] = useState([]);
 
-  console.log(allCart);
-  
+
 
   const [loading, setLoading] = useState(false);
 
@@ -51,12 +50,12 @@ function Dashboard() {
   }, []);
 
 
-
+  const newCarts = allCart.reverse().slice(0, 5);
   const totalPrice = allCart.reduce((sum, item) => sum + (Number(item.price) * item.quantity), 0);
 
 
   return (
-    <div className="p-6 bg-gray-50 h-full font-Nunito text-gray-800">
+    <div className="p-6 bg-gray-50 min-h-screen font-Nunito text-gray-800">
 
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>
@@ -122,11 +121,11 @@ function Dashboard() {
             </thead>
             <tbody className="text-sm font-medium text-gray-700">
 
-              {allCart.map((item) => {
+              {newCarts.map((item) => {
                 return (
                   <tr className="border-b border-gray-300 hover:bg-gray-200 transition-colors">
                     <td className="py-3.5 pl-2 font-bold text-gray-900">{allUser.find(u => u.id === item.userId)?.user || "Mijoz topilmadi"}</td>
-                    <td className="py-3.5">{item.prodact ? item.prodact : "Maxsulot yuklanmoqda ..." }</td>
+                    <td className="py-3.5">{item.prodact ? item.prodact : "Maxsulot yuklanmoqda ..."}</td>
                     <td className="py-3.5">{item.quantity ? item.quantity : "Yuklanmoqda..."}</td>
 
                   </tr>

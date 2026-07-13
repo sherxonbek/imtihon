@@ -9,7 +9,7 @@ function Saidbar() {
     const baseStyle = 'flex items-center gap-2.5 text-[16px] font-bold w-[210px] py-2 px-3 rounded-lg transition-all duration-200';
 
     return (
-        <div className='bg-gray-200 w-[250px] h-screen pl-3.5 flex flex-col gap-2'>
+        <div className='bg-gray-200 w-[250px] min-h-screen pl-3.5 flex flex-col gap-2'>
             <h1 className='text-[#6B7280] font-bold text-[18px] pl-2 pt-2'>Navigatsiya</h1>
             <NavLink to="/admin"
                 end

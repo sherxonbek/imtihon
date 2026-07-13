@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 function Navbar() {
     return (
-        <div className='flex justify-between items-center px-8 py-3 bg-white shadow-sm border-b border-gray-100  mx-auto w-full gap-6'>
+        <div className='flex justify-between items-center  px-8 py-3 bg-white shadow-sm border-b border-gray-100  mx-auto w-full gap-6'>
 
             <NavLink to="/" className='flex gap-2 items-center cursor-pointer select-none'>
                 <LucideShoppingBag size={34} className='rounded-full p-1.5 text-white bg-[#7C3AED]' />

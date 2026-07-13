@@ -62,9 +62,7 @@ function Navbar() {
       </div>
 
       <div className="flex items-center gap-6">
-        <NavLink to="/packagecheck">
-          <PackageCheck />
-        </NavLink>
+
         <NavLink
           to="/cart"
           className={({ isActive }) =>
@@ -99,10 +97,15 @@ function Navbar() {
                       </p>
                     </div>
 
-                    <button className="w-full text-left px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-[#7C3AED] transition-colors flex items-center gap-2 cursor-pointer">
+                    <NavLink to="/" className="w-full text-left px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-[#7C3AED] transition-colors flex items-center gap-2 cursor-pointer">
                       <User2 size={16} />
-                      Mening profilim
-                    </button>
+                      <h1>Mening profilim</h1>
+                    </NavLink>
+
+                    <NavLink to="/packagecheck" className="w-full text-left px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-purple-50 hover:text-[#7C3AED] transition-colors flex items-center gap-2 cursor-pointer">
+                      <PackageCheck size={16} />
+                      <h1>Buyurtmalarim</h1>
+                    </NavLink>
 
                     <button
                       onClick={handleLogout}

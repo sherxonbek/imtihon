@@ -26,10 +26,25 @@ function ProdactsManage() {
         }
     }
 
+    console.log(allPraducts);
+
+
     useEffect(() => {
         orders();
     }, []);
 
+    async function handleDelete(id) {
+        try {
+            await productAPI.delete(id);
+
+            setAllProducts(allProducts.filter((item) => item.id !== id)); 
+
+            alert("Mahsulot muvaffaqiyatli o'chirildi!");
+        } catch (error) {
+            console.log("O'chirishda xatolik yuz berdi:", error);
+            alert("Mahsulotni o'chirishda muammo bo'ldi!");
+        }
+    }
 
     return (
         <div className='w-full bg-gray-50 '>
@@ -49,52 +64,59 @@ function ProdactsManage() {
                             </tr>
                         </thead>
 
-                        <tbody className="text-sm font-medium text-gray-700 bg-white">
+                        {allPraducts.map((item) => {
+                            return (
+                                <tbody className="text-sm font-medium text-gray-700 bg-white">
 
-                            <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                                    <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
 
-                                <td className="py-4 pl-1 w-24">
-                                    <div className="w-16 h-20 bg-gray-100 border border-gray-200 rounded-xl flex items-center justify-center text-xs text-gray-400 font-bold">
-                                        Rasm
-                                    </div>
-                                </td>
+                                        <td className="py-4 pl-1 w-24">
+                                            <div className="w-16 h-20 bg-gray-100 border border-gray-200 rounded-xl flex items-center justify-center text-xs text-gray-400 font-bold">
+                                                <img src={item.image} className='w-full h-full object-cover rounded-xl' />
+                                            </div>
+                                        </td>
 
-                                <td className="py-4 max-w-xs md:max-w-md pl-2">
-                                    <h3 className="font-bold text-gray-900 line-clamp-2 pr-4">
-                                        BMW M5 sedan luxury car edition
-                                    </h3>
-                                    <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded mt-1 inline-block">
-                                        Mashinalar
-                                    </span>
-                                </td>
+                                        <td className="py-4 max-w-xs md:max-w-md pl-2">
+                                            <h3 className="font-bold text-gray-900 line-clamp-2 pr-4">
+                                                {item.title}
+                                            </h3>
+                                            <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded mt-1 inline-block">
+                                                {item.category}
+                                            </span>
+                                        </td>
 
-                                <td className="py-4 font-extrabold text-gray-950 whitespace-nowrap">
-                                    70,000,000 so'm
-                                </td>
+                                        <td className="py-4 font-extrabold text-gray-950 whitespace-nowrap">
+                                            {item.price} so'm
+                                        </td>
 
-                                <td className="py-4 pr-12 text-right w-36">
-                                    <div className="flex items-center justify-end gap-4">
+                                        <td className="py-4 pr-12 text-right w-36">
+                                            <div className="flex items-center justify-end gap-4">
 
-                                        <button
-                                            type="button"
-                                            className="px-3 py-1.5 text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors cursor-pointer"
-                                        >
-                                            <GrEdit size={20} />
-                                        </button>
+                                                <button
+                                                    type="button"
+                                                    className="px-3 py-1.5 text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors cursor-pointer"
+                                                >
+                                                    <GrEdit size={20} />
+                                                </button>
 
-                                        <button
-                                            type="button"
-                                            className="p-1.5 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
-                                        >
-                                            <RiDeleteBin6Fill size={20} />
-                                        </button>
+                                                <button
+                                                    onClick={() => handleDelete(item.id)}
+                                                    type="button"
+                                                    className="p-1.5 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                                                >
+                                                    <RiDeleteBin6Fill size={20} />
+                                                </button>
 
-                                    </div>
-                                </td>
+                                            </div>
+                                        </td>
 
-                            </tr>
+                                    </tr>
 
-                        </tbody>
+                                </tbody>
+                            )
+                        })}
+
+
 
                     </table>
                 </div>

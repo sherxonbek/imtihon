@@ -45,12 +45,15 @@ function Dashboard() {
     }
   }
 
+  console.log(allCart);
+  
+
   useEffect(() => {
     orders();
   }, []);
 
 
-  const newCarts = allCart.reverse().slice(0, 5);
+  const newCarts = allCart.toReversed().slice(0, 5);
   const totalPrice = allCart.reduce((sum, item) => sum + (Number(item.price) * item.quantity), 0);
 
 
